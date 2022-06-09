@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="emerald">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css">
+    <title>Road Trip Farmers</title>
+</head>
+
+<body>
+    <div class="drawer">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col">
+            <!-- Navbar -->
+            <div class="w-full navbar bg-base-300">
+                <div class="flex-none">
+                    <label for="my-drawer" class="btn btn-square btn-ghost">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            class="inline-block w-6 h-6 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </label>
+                </div>
+                <div class="flex-1 px-2 mx-2">
+                    <h1 class="text-2xl font-bold">Road Trip Farmers!</h1>
+                </div>
+
+            </div>
+            <!-- Page content here -->
+
+            <ul>
+                <!-- Player Card -->
+                <% for(let i=0; i < players.length; i++) {%>
+                    <div class="flex flex-col m-2 p-4 border border-primary rounded-box">
+                        <!-- Don't change these-->
+                        <h3 class="text-xl text-center">
+                            <%= players[i].farmName %>
+                        </h3>
+                        <h4 class="text-sm text-center">
+                            <%= players[i].playerName %>
+                        </h4>
+                        <!-- End Don't Change these-->
+                        <div class="flex">
+                            <ul class="w-1/2">
+                                <li> Farm Count:
+                                    <%= players[i].farmCount %>
+                                </li>
+                            </ul>
+                            <ul class="w-1/2">
+                                <li> Barn Count:
+                                    <%= players[i].barn.barnCount %>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="self-end trash"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg></div>
+                    </div>
+                    <% } %>
+            </ul>
+        </div>
+        <div class="drawer-side">
+            <label for="my-drawer" class="drawer-overlay"></label>
+            <div class="menu p-5 overflow-y-auto w-72 bg-base-100 flex flex-col justify-between">
+                <!-- Sidebar content here -->
+
+                <!-- <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+                    <input type="checkbox">
+                    <div class="collapse-title text-xl font-medium flex gap-4">
+                        <span>Create New Player</span>
+                    </div>
+                    <div class="collapse-content flex flex-col gap-2">
+                        <form action="/players" method="POST" class="flex flex-col items-center">
+                            <div class="form-control w-full max-w-xs  text-center">
+                                <label class="label" for="playerName">
+                                    <span class="label-text">Enter a new Player's Name:</span>
+                                </label>
+                                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                                    id="playerName" name="playerName" />
+                                <label class="label" for="farmName">
+                                    <span class="label-text">Enter a new Player's Name:</span>
+                                </label>
+                                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                                    id="farmName" name="farmName" />
+
+                                <input class="btn btn-primary mt-3" type="submit" value="Submit">
+                            </div>
+                        </form>
+                    </div> 
+                </div> -->
+                <!--New Player-->
+                <form action="/players" method="POST" class="flex flex-col items-center">
+                    <div class="form-control w-full max-w-xs  text-center">
+                        <label class="label" for="playerName">
+                            <span class="label-text">Player's Name:</span>
+                        </label>
+                        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                            id="playerName" name="playerName" />
+                        <label class="label" for="farmName">
+                            <span class="label-text">Farm Name:</span>
+                        </label>
+                        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                            id="farmName" name="farmName" />
+
+                        <input class="btn btn-primary mt-3" type="submit" value="Create New Player">
+                    </div>
+                </form><!-- New Player -->
+                <!-- <button class="btn btn-warning">Reset All Players</button> -->
+
+                <!-- <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+                    <input type="checkbox">
+                    <div class="collapse-title text-xl font-medium flex gap-4">
+                        <span>Reset</span>
+                    </div>
+                    <div class="collapse-content flex flex-col gap-2">
+                        <button class="btn btn-warning">Reset All Players</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <script src="main.js"></script>
+</body>
+
+</html>
