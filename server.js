@@ -9,7 +9,7 @@ require('dotenv').config();
 // ========================
 
 let db,
-	dbConnectionStr = process.env.DB_STRING,
+	dbConnectionStr = process.env.MONGODB_URI,
 	dbName = 'counting-cows';
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
