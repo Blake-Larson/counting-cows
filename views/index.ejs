@@ -14,7 +14,7 @@
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <div class="w-full navbar bg-base-300">
+            <div class="w-full navbar bg-secondary">
                 <div class="flex-none">
                     <label for="my-drawer" class="btn btn-square btn-ghost">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -25,11 +25,47 @@
                     </label>
                 </div>
                 <div class="flex-1 px-2 mx-2">
-                    <h1 class="text-2xl font-bold">Road Trip Farmers!</h1>
+                    <h1 class="text-2xl font-bold">Counting Cows!</h1>
                 </div>
 
             </div>
             <!-- Page content here -->
+
+
+            <div class="flex flex-col m-2 items-center p-3 border-2 rounded-box ">
+                <select class="select select-bordered w-full max-w-xs m-2" id="playerSelect" name="playerSelect">
+                    <option disabled selected>Select Player</option>
+                    <% for(let i=0; i < players.length; i++) {%>
+                        <option>
+                            <%= players[i].playerName %>
+                        </option>
+                        <% } %>
+                </select>
+                <select class="select select-bordered w-full max-w-xs m-2" id="animalSelect" name="animalSelect">
+                    <option disabled selected>Select Animal</option>
+                    <option>Cows</option>
+                    <option>Sheep</option>
+                    <option>Horses</option>
+                    <option>Goats</option>
+                    <option>Other</option>
+                </select>
+                <div class="flex flex-col items-center py-5 mt-5">
+                    <div class="flex gap-3">
+                        <label class="label" for="number">
+                            <span class="label-text">Number:</span>
+                        </label>
+                        <input type="number" class="input input-bordered w-20" id="number" name="number">
+                        <button id="byNumber" class="btn btn-primary w-28">Submit</button>
+                    </div>
+                    <div class="divider">OR</div>
+                    <div class="flex gap-2 m-2">
+                        <button id="barn" class="btn btn-primary w-28">Barn</button>
+                        <button id="marry" class="btn btn-primary w-28">Marry</button>
+                        <button id="kill" class="btn btn-primary w-28">Kill</button>
+                    </div>
+                </div>
+            </div>
+
 
             <ul>
                 <!-- Player Card -->
@@ -48,13 +84,44 @@
                                 <li> Farm Count:
                                     <%= players[i].farmCount %>
                                 </li>
+                                <li> Cows:
+                                    <%= players[i].farmCows %>
+                                </li>
+                                <li> Sheep:
+                                    <%= players[i].farmSheep %>
+                                </li>
+                                <li> Horses:
+                                    <%= players[i].farmHorses %>
+                                </li>
+                                <li> Goats:
+                                    <%= players[i].farmGoats %>
+                                </li>
+                                <li> Other:
+                                    <%= players[i].farmOther %>
+                                </li>
                             </ul>
                             <ul class="w-1/2">
                                 <li> Barn Count:
-                                    <%= players[i].barn.barnCount %>
+                                    <%= players[i].barnCount %>
+                                </li>
+                                <li> Cows:
+                                    <%= players[i].barnCows %>
+                                </li>
+                                <li> Sheep:
+                                    <%= players[i].barnSheep %>
+                                </li>
+                                <li> Horses:
+                                    <%= players[i].barnHorses %>
+                                </li>
+                                <li> Goats:
+                                    <%= players[i].barnGoats %>
+                                </li>
+                                <li> Other:
+                                    <%= players[i].barnOther %>
                                 </li>
                             </ul>
                         </div>
+
                         <div class="self-end trash"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -69,7 +136,7 @@
             <div class="menu p-5 overflow-y-auto w-72 bg-base-100 flex flex-col justify-between">
                 <!-- Sidebar content here -->
                 <!--New Player-->
-                <form action="/players" method="POST" class="flex flex-col items-center">
+                <form action="/addPlayer" method="POST" class="flex flex-col items-center">
                     <div class="form-control w-full max-w-xs  text-center">
                         <label class="label" for="playerName">
                             <span class="label-text">Player's Name:</span>
@@ -89,6 +156,7 @@
 
             </div>
         </div>
+
         <script src="main.js"></script>
 </body>
 
