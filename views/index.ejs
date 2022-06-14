@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="output.css">
     <title>Counting Cows</title>
 </head>
@@ -14,7 +19,7 @@
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <div class="navbar bg-base-200">
+            <header class="navbar bg-base-200">
                 <div class="navbar-start">
                     <label for="my-drawer" class="btn btn-square btn-ghost">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -29,7 +34,7 @@
                 </div>
                 <div class="navbar-end">
                     <!-- The button to open modal -->
-                    <label for="my-modal-3" class="btn modal-button">Rules</label>
+                    <label for="my-modal-3" class="btn modal-button btn-secondary">Rules</label>
 
                     <!-- Put this part before </body> tag -->
                     <input type="checkbox" id="my-modal-3" class="modal-toggle" />
@@ -72,11 +77,59 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Page content here -->
+            </header>
 
-            <div class="flex flex-col m-2 items-center p-3 border-2 rounded-box ">
-                <select class="select select-bordered w-full max-w-xs m-2" id="playerSelect" name="playerSelect">
+            <!-- Page content -->
+            <div class="flex flex-col m-2 items-center p-3 border-2 rounded-box gap-3">
+                <h2 class="text-xl">Select a Player:</h2>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <% for(let i=0; i < players.length; i++) {%>
+                        <div class="btn btn-primary w-40 min-w-fit ">
+                            <input id="radioPlayer<%= i %>" type="radio" name="radioPlayer"
+                                class="radio radio-secondary mr-3" value="<%= players[i].playerName %>" />
+                            <label for="radioPlayer<%= i %>" class="label cursor-pointer">
+                                <%= players[i].playerName %>
+                            </label>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="divider"></div>
+                <h2 class="text-xl">Select an Animal:</h2>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <div class="btn btn-primary w-32 min-w-fit">
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Cows" />
+                            Cows
+                        </label>
+                    </div>
+                    <div class="btn btn-primary w-32 min-w-fit">
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Sheep" />
+                            Sheep
+                        </label>
+                    </div>
+                    <div class="btn btn-primary w-32 min-w-fit">
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Horses" />
+                            Horses
+                        </label>
+                    </div>
+                    <div class="btn btn-primary w-32 min-w-fit">
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Goats" />
+                            Goats
+                        </label>
+                    </div>
+                    <div class="btn btn-primary w-32 min-w-fit">
+                        <label class="label cursor-pointer">
+                            <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Other" />
+                            Other
+                        </label>
+                    </div>
+
+                </div>
+
+                <!-- <select class="select select-bordered w-full max-w-xs m-2" id="playerSelect" name="playerSelect">
                     <option disabled selected>Select Player</option>
                     <% for(let i=0; i < players.length; i++) {%>
                         <option>
@@ -91,7 +144,7 @@
                     <option>Horses</option>
                     <option>Goats</option>
                     <option>Other</option>
-                </select>
+                </select> -->
                 <div class="flex flex-col items-center py-5 mt-5">
                     <div class="flex gap-3">
                         <label class="label" for="number">

@@ -38,34 +38,50 @@ document.querySelector('#barn').addEventListener('click', barn)
 document.querySelector('#marry').addEventListener('click', marry)
 document.querySelector('#kill').addEventListener('click', kill)
 
+function getRadioValue(name) {
+	let ele = document.getElementsByName(name);
+	let result
+	ele.forEach(e => e.checked ? result = e.value : null)
+	if (result) {
+		return result
+	} else {
+		if (name === 'radioPlayer') {
+			alert('No player selected.')
+		} else {
+			alert('No animal selected.')
+		}
+	}
+}
 
 async function byNumber() {
-	const pName = document.querySelector('#playerSelect').value
-	const animal = document.querySelector('#animalSelect').value
+	const pName = getRadioValue('radioPlayer')
+	const animal = getRadioValue('radioAnimal')
 	const number = Number(document.querySelector('#number').value)
-
-	try {
-		const response = await fetch('byNumber', {
-			method: 'put',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				'playerNameS': pName,
-				'animalS': animal,
-				'numberS': number
+	if (!number) {
+		alert('Please enter a number.')
+	} else {
+		try {
+			const response = await fetch('byNumber', {
+				method: 'put',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					'playerNameS': pName,
+					'animalS': animal,
+					'numberS': number
+				})
 			})
-		})
-		const data = await response.json()
-		console.log(data)
-		location.reload()
+			const data = await response.json()
+			console.log(data)
+			location.reload()
 
-	} catch (err) {
-		console.log(err)
+		} catch (err) {
+			console.log(err)
+		}
 	}
 }
 async function barn() {
-	const pName = document.querySelector('#playerSelect').value
-	const animal = document.querySelector('#animalSelect').value
-	const number = Number(document.querySelector('#number').value)
+	const pName = getRadioValue('radioPlayer')
+	const animal = getRadioValue('radioAnimal')
 
 	try {
 		const response = await fetch('barn', {
@@ -86,8 +102,8 @@ async function barn() {
 	}
 }
 async function marry() {
-	const pName = document.querySelector('#playerSelect').value
-	const animal = document.querySelector('#animalSelect').value
+	const pName = getRadioValue('radioPlayer')
+	const animal = getRadioValue('radioAnimal')
 
 	try {
 		const response = await fetch('marry', {
@@ -107,8 +123,8 @@ async function marry() {
 	}
 }
 async function kill() {
-	const pName = document.querySelector('#playerSelect').value
-	const animal = document.querySelector('#animalSelect').value
+	const pName = getRadioValue('radioPlayer')
+	const animal = getRadioValue('radioAnimal')
 
 	try {
 		const response = await fetch('kill', {
