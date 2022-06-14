@@ -407,7 +407,9 @@ app.put('/kill', (request, response) => {
 		.catch(error => console.error(error))
 })
 
-
+// ========================
+// Delete
+// ========================
 
 app.delete('/deletePlayer', (request, response) => {
 	db.collection('players')
