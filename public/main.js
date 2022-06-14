@@ -1,15 +1,4 @@
 // ========================
-// Rules
-// ========================
-
-document.querySelector('#rules').addEventListener('click', getRules)
-
-function getRules() {
-
-}
-
-
-// ========================
 // Delete Player
 // ========================
 
