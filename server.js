@@ -38,7 +38,8 @@ app.get('/', (request, response) => {
 			response.render('index.ejs', { players: player });
 		})
 		.catch(error => console.error(error));
-});
+})
+
 
 // ========================
 // Create New Player
@@ -49,7 +50,8 @@ app.post('/addPlayer', (request, response) => {
 		.insertOne({
 			playerName: request.body.playerName,
 			farmName: request.body.farmName,
-			farmCount: 0,
+			farmTotal: 0,
+			grazingCount: 0,
 			farmCows: 0,
 			farmSheep: 0,
 			farmHorses: 0,
@@ -84,7 +86,7 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmCows: player.farmCows + request.body.numberS,
-							farmCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -97,7 +99,7 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmSheep: player.farmSheep + request.body.numberS,
-							farmCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -110,7 +112,7 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmHorses: player.farmHorses + request.body.numberS,
-							farmCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -123,7 +125,7 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmGoats: player.farmGoats + request.body.numberS,
-							farmCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -136,7 +138,7 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmOther: player.farmOther + request.body.numberS,
-							farmCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -170,7 +172,7 @@ app.put('/barn', (request, response) => {
 							barnCows: player.barnCows + player.farmCows,
 							farmCows: 0,
 							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmCows,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmCows
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmCows
 						}
 					})
 						.then(result => {
@@ -185,7 +187,7 @@ app.put('/barn', (request, response) => {
 							barnSheep: player.barnSheep + player.farmSheep,
 							farmSheep: 0,
 							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmSheep,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmSheep
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmSheep
 						}
 					})
 						.then(result => {
@@ -200,7 +202,7 @@ app.put('/barn', (request, response) => {
 							barnHorses: player.barnHorses + player.farmHorses,
 							farmHorses: 0,
 							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmHorses,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmHorses
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmHorses
 						}
 					})
 						.then(result => {
@@ -215,7 +217,7 @@ app.put('/barn', (request, response) => {
 							barnGoats: player.barnGoats + player.farmGoats,
 							farmGoats: 0,
 							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmGoats,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmGoats
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmGoats
 						}
 					})
 						.then(result => {
@@ -230,7 +232,7 @@ app.put('/barn', (request, response) => {
 							barnOther: player.barnOther + player.farmOther,
 							farmOther: 0,
 							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmOther,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmOther
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmOther
 						}
 					})
 						.then(result => {
@@ -260,7 +262,7 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmCows: player.farmCows * 2,
-							farmCount: (player.farmCows * 2) + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: (player.farmCows * 2) + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -273,7 +275,7 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmSheep: player.farmSheep * 2,
-							farmCount: player.farmCows + (player.farmSheep * 2) + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + (player.farmSheep * 2) + player.farmHorses + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -286,7 +288,7 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmHorses: player.farmHorses * 2,
-							farmCount: player.farmCows + player.farmSheep + (player.farmHorses * 2) + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + player.farmSheep + (player.farmHorses * 2) + player.farmGoats + player.farmOther
 						}
 					})
 						.then(result => {
@@ -299,7 +301,7 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmGoats: player.farmGoats * 2,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + (player.farmGoats * 2) + player.farmOther
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + (player.farmGoats * 2) + player.farmOther
 						}
 					})
 						.then(result => {
@@ -312,7 +314,7 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmOther: player.farmOther * 2,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + (player.farmOther * 2)
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + (player.farmOther * 2)
 						}
 					})
 						.then(result => {
@@ -341,7 +343,7 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmCows: 0,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmCows
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmCows
 						}
 					})
 						.then(result => {
@@ -354,7 +356,7 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmSheep: 0,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmSheep
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmSheep
 						}
 					})
 						.then(result => {
@@ -367,7 +369,7 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmHorses: 0,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmHorses
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmHorses
 						}
 					})
 						.then(result => {
@@ -380,7 +382,7 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmGoats: 0,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmGoats
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmGoats
 						}
 					})
 						.then(result => {
@@ -393,7 +395,7 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmOther: 0,
-							farmCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmOther
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmOther
 						}
 					})
 						.then(result => {

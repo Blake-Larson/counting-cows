@@ -161,8 +161,19 @@
                     </div>
                 </div>
             </div>
+            <!-- <div class="flex prose flex-wrap justify-center gap-3">
+                <% for(let i=0; i < players.length; i++) {%>
+                    <div>
+                        <h3>
+                            <%= players[i].playerName %>
+                        </h3>
+                        <span>
+                            Livestock : <%= players[i].farmTotal %>
+                        </span>
+                    </div>
 
-
+                    <% } %>
+            </div> -->
             <ul>
                 <!-- Player Card -->
                 <% for(let i=0; i < players.length; i++) {%>
@@ -177,8 +188,8 @@
                         <!-- End Don't Change these-->
                         <div class="flex">
                             <ul class="w-1/2">
-                                <li> Farm Count:
-                                    <%= players[i].farmCount %>
+                                <li> Grazing Count:
+                                    <%= players[i].grazingCount %>
                                 </li>
                                 <li> Cows:
                                     <%= players[i].farmCows %>
