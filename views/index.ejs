@@ -14,8 +14,8 @@
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <div class="w-full navbar bg-secondary">
-                <div class="flex-none">
+            <div class="navbar bg-base-200">
+                <div class="navbar-start">
                     <label for="my-drawer" class="btn btn-square btn-ghost">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             class="inline-block w-6 h-6 stroke-current">
@@ -24,13 +24,54 @@
                         </svg>
                     </label>
                 </div>
-                <div class="flex-1 px-2 mx-2">
-                    <h1 class="text-2xl font-bold">Counting Cows!</h1>
+                <div class="navbar-center">
+                    <h1 class=" text-center text-2xl font-bold">Counting Cows</h1>
                 </div>
+                <div class="navbar-end">
+                    <!-- The button to open modal -->
+                    <label for="my-modal-4" class=" btn modal-button btn-secondary">Rules</label>
 
+                    <!-- Put this part before </body> tag -->
+                    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+                    <label for="my-modal-4" class="modal cursor-pointer">
+                        <label class="modal-box relative prose" for="">
+                            <h3 class="text-lg font-bold text-center mb-5">Counting Cows Rulebook</h3>
+                            <h4>Overview</h4>
+                            <p>You are trying to become a successful farmer by collecting various forms of livestock.
+                                The player with the most livestock wins.</p>
+                            <h4>Getting Livestock</h4>
+                            <p>You can play with any available living creatures (cows, sheep, goats, horses, dogs, cats,
+                                frogs, llamas, whatever) or you can restrict the game to certain species.</p>
+                            <p>To claim animals, you estimate their number and say, “I claim [12] cows!”. Whoever speaks
+                                first claims the animals, adding them to their personal livestock tallies.</p>
+                            <p>Other players can contest the claim by counting the animals and reporting the actual
+                                number, “Actually, there are [15] cows!”. If the first player estimated incorrectly,
+                                they get no new animals and the player contesting the claim gets to keep all the animals
+                                instead.</p>
+                            <h4>Marry Your Animals</h4>
+                            <p>If you pass a church/synagogue/municipal office or other location associated with
+                                marriage ceremonies, a player may say “I marry my [cows]!”. When you marry your [cows],
+                                they reproduce, doubling their number. Each church may only be used once: one church,
+                                one
+                                player, one species married. Interspecies marriage is forbidden in this game.</p>
+                            <h4>Kill Your Opponent's Animals</h4>
+                            <p>If you pass a graveyard, cemetary, or other silimar location, a player may say "I kill
+                                [Jeremy's]
+                                cows!" You must specify who's animals you are killing. That species of animal is reduced
+                                to zero.</p>
+                            <h4>Store Animals in a Barn</h4>
+                            <p>To protect against loss, you can stash your animals safely inside any barn that you pass
+                                by saying “I put my [cows] into that barn!”. One barn, one player, one species
+                                protected. Once inside the barn, animals cannot be killed or married.</p>
+                            <h4>Ending the Game</h4>
+                            <p>The game ends when you reach your destination or the players get tired of the game. If
+                                you're playing with multiple species, you may assign different point values to each
+                                species. The person with the biggest farm wins!</p>
+                        </label>
+                    </label>
+                </div>
             </div>
             <!-- Page content here -->
-
 
             <div class="flex flex-col m-2 items-center p-3 border-2 rounded-box ">
                 <select class="select select-bordered w-full max-w-xs m-2" id="playerSelect" name="playerSelect">
@@ -52,7 +93,7 @@
                 <div class="flex flex-col items-center py-5 mt-5">
                     <div class="flex gap-3">
                         <label class="label" for="number">
-                            <span class="label-text">Number:</span>
+                            <span class="label-text text-lg">Number:</span>
                         </label>
                         <input type="number" class="input input-bordered w-20" id="number" name="number">
                         <button id="byNumber" class="btn btn-primary w-28">Submit</button>
@@ -133,8 +174,13 @@
         </div>
         <div class="drawer-side">
             <label for="my-drawer" class="drawer-overlay"></label>
-            <div class="menu p-5 overflow-y-auto w-72 bg-base-100 flex flex-col justify-between">
+            <div class="menu p-5 overflow-y-auto w-72 bg-base-100 flex flex-col items-center">
                 <!-- Sidebar content here -->
+                <!-- <div class="px-2 mx-2">
+                    <button id="rules" class="btn btn-info text-xl">Rules</button>
+                </div> -->
+
+                <div class="divider"></div>
                 <!--New Player-->
                 <form action="/addPlayer" method="POST" class="flex flex-col items-center">
                     <div class="form-control w-full max-w-xs  text-center">

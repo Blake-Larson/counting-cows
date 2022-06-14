@@ -1,3 +1,18 @@
+// ========================
+// Rules
+// ========================
+
+document.querySelector('#rules').addEventListener('click', getRules)
+
+function getRules() {
+
+}
+
+
+// ========================
+// Delete Player
+// ========================
+
 const trash = document.querySelectorAll('.trash');
 Array.from(trash).forEach(element => {
 	element.addEventListener('click', deletePlayer);
@@ -24,6 +39,10 @@ async function deletePlayer() {
 		}
 	}
 }
+
+// ========================
+// Game Functionality
+// ========================
 
 document.querySelector('#byNumber').addEventListener('click', byNumber)
 document.querySelector('#barn').addEventListener('click', barn)
