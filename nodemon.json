@@ -3,7 +3,8 @@
       "server.js",
       "public/main.js",
       "views/index.ejs",
-      "index.html"
+      "index.html",
+      "src/input.css",
     ],
     "events": {
         "start": "npx tailwindcss -i ./src/input.css -o ./public/output.css"

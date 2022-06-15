@@ -6,10 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&family=Poppins:wght@100;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Stylesheets-->
     <link rel="stylesheet" href="output.css">
     <title>Counting Cows</title>
 </head>
@@ -19,7 +29,7 @@
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
-            <header class="navbar bg-base-200">
+            <header class="navbar bg-neutral text-neutral-content">
                 <div class="navbar-start">
                     <label for="my-drawer" class="btn btn-square btn-ghost">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -39,7 +49,7 @@
                 </div>
                 <div class="navbar-end">
                     <!-- The button to open modal -->
-                    <label for="my-modal-3" class="btn modal-button btn-secondary">Rules</label>
+                    <label for="my-modal-3" class="btn modal-button btn-info">Rules</label>
 
                     <!-- Put this part before </body> tag -->
                     <input type="checkbox" id="my-modal-3" class="modal-toggle" />
@@ -86,47 +96,47 @@
 
             <!-- Page content -->
             <div class="flex flex-col m-2 items-center p-3 border-2 rounded-box gap-3">
-                <h2 class="text-xl">Select a Player:</h2>
+                <h2 class="text-xl font-serif">Select a Farm:</h2>
                 <div class="flex flex-wrap justify-center gap-3">
                     <% for(let i=0; i < players.length; i++) {%>
                         <div class="btn btn-primary w-40 min-w-fit ">
                             <input id="radioPlayer<%= i %>" type="radio" name="radioPlayer"
                                 class="radio radio-secondary mr-3" value="<%= players[i].playerName %>" />
-                            <label for="radioPlayer<%= i %>" class="label cursor-pointer">
-                                <%= players[i].playerName %>
+                            <label for="radioPlayer<%= i %>" class="label cursor-pointer custom-button">
+                                <%= players[i].farmName %>
                             </label>
                         </div>
                         <% } %>
                 </div>
                 <div class="divider"></div>
-                <h2 class="text-xl">Select an Animal:</h2>
+                <h2 class="text-xl font-serif">Select an Animal:</h2>
                 <div class="flex flex-wrap justify-center gap-3">
                     <div class="btn btn-primary w-32 min-w-fit">
-                        <label class="label cursor-pointer">
+                        <label class="label cursor-pointer custom-button">
                             <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Cows" />
                             Cows
                         </label>
                     </div>
                     <div class="btn btn-primary w-32 min-w-fit">
-                        <label class="label cursor-pointer">
+                        <label class="label cursor-pointer custom-button">
                             <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Sheep" />
                             Sheep
                         </label>
                     </div>
                     <div class="btn btn-primary w-32 min-w-fit">
-                        <label class="label cursor-pointer">
+                        <label class="label cursor-pointer custom-button">
                             <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Horses" />
                             Horses
                         </label>
                     </div>
                     <div class="btn btn-primary w-32 min-w-fit">
-                        <label class="label cursor-pointer">
+                        <label class="label cursor-pointer custom-button">
                             <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Goats" />
                             Goats
                         </label>
                     </div>
                     <div class="btn btn-primary w-32 min-w-fit">
-                        <label class="label cursor-pointer">
+                        <label class="label cursor-pointer custom-button">
                             <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Other" />
                             Other
                         </label>
@@ -153,45 +163,57 @@
                 <div class="flex flex-col items-center py-5 mt-5">
                     <div class="flex gap-3">
                         <label class="label" for="number">
-                            <span class="label-text text-lg">Number:</span>
+                            <span class="label-text text-xl font-serif">Number:</span>
                         </label>
                         <input type="number" class="input input-bordered w-20" id="number" name="number">
-                        <button id="byNumber" class="btn btn-primary w-28">Submit</button>
+                        <button id="byNumber" class="btn btn-secondary w-28 custom-button">Submit</button>
                     </div>
-                    <div class="divider">OR</div>
+                    <div class="divider text-secondary font-bold font-serif">OR</div>
                     <div class="flex gap-2 m-2">
-                        <button id="barn" class="btn btn-primary w-28">Barn</button>
-                        <button id="marry" class="btn btn-primary w-28">Marry</button>
-                        <button id="kill" class="btn btn-primary w-28">Kill</button>
+                        <button id="barn" class="btn btn-secondary w-28 custom-button">Barn</button>
+                        <button id="marry" class="btn btn-secondary w-28 custom-button">Marry</button>
+                        <button id="kill" class="btn btn-secondary w-28 custom-button">Kill</button>
                     </div>
                 </div>
             </div>
-            <!-- <div class="flex prose flex-wrap justify-center gap-3">
+            <div class="flex flex-col items-center flex-wrap justify-center bg-neutral py-3">
+                <h2 class="text-2xl font-normal text-neutral-content font-serif py-2">Rankings:</h2>
+                <div class="bg-white h-0.5 w-3/4 rounded"></div>
                 <% for(let i=0; i < players.length; i++) {%>
-                    <div>
-                        <h3>
-                            <%= players[i].playerName %>
+                    <div class="text-center py-2">
+                        <h3 class="text-accent text-xl font-normal font-serif">
+                            <%= players[i].farmName %>
                         </h3>
-                        <span>
+                        <span class="text-neutral-content">
                             Livestock : <%= players[i].farmTotal %>
                         </span>
                     </div>
 
                     <% } %>
+            </div>
+            <!-- <div class="alert alert-success shadow-lg">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span></span>
+                </div>
             </div> -->
             <ul>
                 <!-- Player Card -->
                 <% for(let i=0; i < players.length; i++) {%>
                     <div class="flex flex-col m-2 p-4 border border-primary rounded-box">
                         <!-- Don't change these-->
-                        <h3 class="text-xl text-center">
+                        <h3 class="text-xl text-center font-serif">
                             <%= players[i].farmName %>
                         </h3>
-                        <h4 class="text-sm text-center">
+                        <h4 class="text-center">
                             <%= players[i].playerName %>
                         </h4>
                         <!-- End Don't Change these-->
-                        <div class="flex">
+                        <div class="flex mt-3">
                             <ul class="w-1/2">
                                 <li> Grazing Count:
                                     <%= players[i].grazingCount %>

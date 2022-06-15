@@ -33,6 +33,7 @@ app.use(express.json());
 app.get('/', (request, response) => {
 	db.collection('players')
 		.find()
+		.sort({ 'farmTotal': -1 })
 		.toArray()
 		.then(player => {
 			response.render('index.ejs', { players: player });
@@ -80,13 +81,17 @@ app.put('/byNumber', (request, response) => {
 	db.collection('players').findOne({ playerName: request.body.playerNameS })
 		.then(player => {
 			const animal = request.body.animalS
+			const grazingCount = player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+			const barnCount = player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther
+			const farmTotal = grazingCount + barnCount
 
 			switch (animal) {
 				case 'Cows':
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmCows: player.farmCows + request.body.numberS,
-							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: grazingCount + request.body.numberS,
+							farmTotal: farmTotal + request.body.numberS,
 						}
 					})
 						.then(result => {
@@ -99,7 +104,8 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmSheep: player.farmSheep + request.body.numberS,
-							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: grazingCount + request.body.numberS,
+							farmTotal: farmTotal + request.body.numberS,
 						}
 					})
 						.then(result => {
@@ -112,7 +118,8 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmHorses: player.farmHorses + request.body.numberS,
-							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: grazingCount + request.body.numberS,
+							farmTotal: farmTotal + request.body.numberS,
 						}
 					})
 						.then(result => {
@@ -125,7 +132,8 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmGoats: player.farmGoats + request.body.numberS,
-							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: grazingCount + request.body.numberS,
+							farmTotal: farmTotal + request.body.numberS,
 						}
 					})
 						.then(result => {
@@ -138,7 +146,8 @@ app.put('/byNumber', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmOther: player.farmOther + request.body.numberS,
-							grazingCount: player.farmCows + request.body.numberS + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: grazingCount + request.body.numberS,
+							farmTotal: farmTotal + request.body.numberS,
 						}
 					})
 						.then(result => {
@@ -164,6 +173,9 @@ app.put('/barn', (request, response) => {
 	db.collection('players').findOne({ playerName: request.body.playerNameS })
 		.then(player => {
 			const animal = request.body.animalS
+			const grazingCount = player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+			const barnCount = player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther
+			const farmTotal = grazingCount + barnCount
 
 			switch (animal) {
 				case 'Cows':
@@ -171,8 +183,8 @@ app.put('/barn', (request, response) => {
 						$set: {
 							barnCows: player.barnCows + player.farmCows,
 							farmCows: 0,
-							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmCows,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmCows
+							barnCount: barnCount + player.farmCows,
+							grazingCount: grazingCount - player.farmCows
 						}
 					})
 						.then(result => {
@@ -186,8 +198,8 @@ app.put('/barn', (request, response) => {
 						$set: {
 							barnSheep: player.barnSheep + player.farmSheep,
 							farmSheep: 0,
-							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmSheep,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmSheep
+							barnCount: barnCount + player.farmSheep,
+							grazingCount: grazingCount - player.farmSheep
 						}
 					})
 						.then(result => {
@@ -201,8 +213,8 @@ app.put('/barn', (request, response) => {
 						$set: {
 							barnHorses: player.barnHorses + player.farmHorses,
 							farmHorses: 0,
-							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmHorses,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmHorses
+							barnCount: barnCount + player.farmHorses,
+							grazingCount: grazingCount - player.farmHorses
 						}
 					})
 						.then(result => {
@@ -216,8 +228,8 @@ app.put('/barn', (request, response) => {
 						$set: {
 							barnGoats: player.barnGoats + player.farmGoats,
 							farmGoats: 0,
-							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmGoats,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmGoats
+							barnCount: barnCount + player.farmGoats,
+							grazingCount: grazingCount - player.farmGoats
 						}
 					})
 						.then(result => {
@@ -231,8 +243,8 @@ app.put('/barn', (request, response) => {
 						$set: {
 							barnOther: player.barnOther + player.farmOther,
 							farmOther: 0,
-							barnCount: player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther + player.farmOther,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmOther
+							barnCount: barnCount + player.farmOther,
+							grazingCount: grazingCount - player.farmOther
 						}
 					})
 						.then(result => {
@@ -256,13 +268,17 @@ app.put('/marry', (request, response) => {
 	db.collection('players').findOne({ playerName: request.body.playerNameS })
 		.then(player => {
 			const animal = request.body.animalS
+			const grazingCount = player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+			const barnCount = player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther
+			const farmTotal = grazingCount + barnCount
 
 			switch (animal) {
 				case 'Cows':
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmCows: player.farmCows * 2,
-							grazingCount: (player.farmCows * 2) + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: (player.farmCows * 2) + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther,
+							farmTotal: farmTotal + player.farmCows,
 						}
 					})
 						.then(result => {
@@ -275,7 +291,8 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmSheep: player.farmSheep * 2,
-							grazingCount: player.farmCows + (player.farmSheep * 2) + player.farmHorses + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + (player.farmSheep * 2) + player.farmHorses + player.farmGoats + player.farmOther,
+							farmTotal: farmTotal + player.farmSheep,
 						}
 					})
 						.then(result => {
@@ -288,7 +305,8 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmHorses: player.farmHorses * 2,
-							grazingCount: player.farmCows + player.farmSheep + (player.farmHorses * 2) + player.farmGoats + player.farmOther
+							grazingCount: player.farmCows + player.farmSheep + (player.farmHorses * 2) + player.farmGoats + player.farmOther,
+							farmTotal: farmTotal + player.farmHorses,
 						}
 					})
 						.then(result => {
@@ -301,7 +319,8 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmGoats: player.farmGoats * 2,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + (player.farmGoats * 2) + player.farmOther
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + (player.farmGoats * 2) + player.farmOther,
+							farmTotal: farmTotal + player.farmGoats,
 						}
 					})
 						.then(result => {
@@ -314,7 +333,8 @@ app.put('/marry', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmOther: player.farmOther * 2,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + (player.farmOther * 2)
+							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + (player.farmOther * 2),
+							farmTotal: farmTotal + player.farmOther,
 						}
 					})
 						.then(result => {
@@ -337,13 +357,17 @@ app.put('/kill', (request, response) => {
 	db.collection('players').findOne({ playerName: request.body.playerNameS })
 		.then(player => {
 			const animal = request.body.animalS
+			const grazingCount = player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther
+			const barnCount = player.barnCows + player.barnSheep + player.barnHorses + player.barnGoats + player.barnOther
+			const farmTotal = grazingCount + barnCount
 
 			switch (animal) {
 				case 'Cows':
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmCows: 0,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmCows
+							grazingCount: grazingCount - player.farmCows,
+							farmTotal: farmTotal - player.farmCows,
 						}
 					})
 						.then(result => {
@@ -356,7 +380,8 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmSheep: 0,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmSheep
+							grazingCount: grazingCount - player.farmSheep,
+							farmTotal: farmTotal - player.farmSheep,
 						}
 					})
 						.then(result => {
@@ -369,7 +394,8 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmHorses: 0,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmHorses
+							grazingCount: grazingCount - player.farmHorses,
+							farmTotal: farmTotal - player.farmHorses,
 						}
 					})
 						.then(result => {
@@ -382,7 +408,8 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmGoats: 0,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmGoats
+							grazingCount: grazingCount - player.farmGoats,
+							farmTotal: farmTotal - player.farmGoats,
 						}
 					})
 						.then(result => {
@@ -395,7 +422,8 @@ app.put('/kill', (request, response) => {
 					db.collection('players').updateOne({ playerName: request.body.playerNameS }, {
 						$set: {
 							farmOther: 0,
-							grazingCount: player.farmCows + player.farmSheep + player.farmHorses + player.farmGoats + player.farmOther - player.farmOther
+							grazingCount: grazingCount - player.farmOther,
+							farmTotal: farmTotal - player.farmOther,
 						}
 					})
 						.then(result => {
