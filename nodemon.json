@@ -1,12 +1,8 @@
-{
-    "watch": [
-      "server.js",
-      "public/main.js",
-      "views/index.ejs",
-      "index.html",
-      "src/input.css",
-    ],
-    "events": {
-        "start": "npx tailwindcss -i ./src/input.css -o ./public/output.css"
-      }
-   }
+{   
+  "watch": ["server.js", "src/", "views/", "public/"],
+  "ext": "js, css, ejs",
+    
+  "events": {
+    "start": "npx tailwindcss -i ./src/input.css -o ./public/output.css "
+    }
+  }
