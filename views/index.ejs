@@ -98,9 +98,9 @@
 
                 <div class="flex flex-col m-2 items-center p-3 gap-3">
                     <h2 class="text-xl font-serif">Select a Farm:</h2>
-                    <div class="flex flex-wrap justify-center gap-3">
+                    <div class="flex flex-col items-start gap-3">
                         <% for(let i=0; i < players.length; i++) {%>
-                            <div class="btn btn-primary w-40 min-w-fit ">
+                            <div class="btn btn-primary w-56">
                                 <input id="radioPlayer<%= i %>" type="radio" name="radioPlayer"
                                     class="radio radio-secondary mr-3" value="<%= players[i].playerName %>" />
                                 <label for="radioPlayer<%= i %>" class="label cursor-pointer custom-button">
@@ -160,9 +160,9 @@
                         </div>
                         <div class="divider text-secondary font-bold font-serif">OR</div>
                         <div class="flex gap-2 m-2">
-                            <button id="barn" class="btn btn-secondary w-28 custom-button">Barn</button>
-                            <button id="marry" class="btn btn-secondary w-28 custom-button">Marry</button>
-                            <button id="kill" class="btn btn-secondary w-28 custom-button">Kill</button>
+                            <button id="barn" class="btn btn-secondary w-24 custom-button">Barn</button>
+                            <button id="marry" class="btn btn-secondary w-24 custom-button">Marry</button>
+                            <button id="kill" class="btn btn-secondary w-24 custom-button">Kill</button>
                         </div>
                     </div>
 

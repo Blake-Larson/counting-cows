@@ -3697,8 +3697,8 @@ body[dir="rtl"] .checkbox:checked,
   width: 1.5rem;
 }
 
-.w-40 {
-  width: 10rem;
+.w-56 {
+  width: 14rem;
 }
 
 .w-32 {
@@ -3711,6 +3711,10 @@ body[dir="rtl"] .checkbox:checked,
 
 .w-28 {
   width: 7rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .w-full {
@@ -3749,6 +3753,10 @@ body[dir="rtl"] .checkbox:checked,
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
