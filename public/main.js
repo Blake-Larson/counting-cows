@@ -1,10 +1,12 @@
+//Temporarily changed all event listeners to disable functionality.
+
 // ========================
 // Delete Player
 // ========================
 
 const trash = document.querySelectorAll('.trash');
 Array.from(trash).forEach(element => {
-	element.addEventListener('click', deletePlayer);
+	element.addEventListener('click', disable) // deletePlayer
 });
 
 async function deletePlayer() {
@@ -33,10 +35,10 @@ async function deletePlayer() {
 // Game Functionality
 // ========================
 
-document.querySelector('#byNumber').addEventListener('click', byNumber)
-document.querySelector('#barn').addEventListener('click', barn)
-document.querySelector('#marry').addEventListener('click', marry)
-document.querySelector('#kill').addEventListener('click', kill)
+document.querySelector('#byNumber').addEventListener('click', disable) // byNumber
+document.querySelector('#barn').addEventListener('click', disable) // barn
+document.querySelector('#marry').addEventListener('click', disable) // marry
+document.querySelector('#kill').addEventListener('click', disable) // kill
 
 function getRadioValue(name) {
 	let ele = document.getElementsByName(name);
@@ -143,4 +145,14 @@ async function kill() {
 	} catch (err) {
 		console.log(err)
 	}
+}
+
+// ===================================
+// Temporarily Disabling Functionality
+// ===================================
+
+document.querySelector('#create').addEventListener('click', disable)
+
+function disable() {
+	alert('You do not have permission to do that.')
 }

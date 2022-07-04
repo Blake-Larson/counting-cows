@@ -57,8 +57,9 @@
                             <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                             <h3 class="text-lg font-bold text-center mb-5">Counting Cows Rulebook</h3>
                             <h4>Overview</h4>
-                            <p>You are trying to become a successful farmer by collecting various forms of livestock.
-                                The player with the most livestock wins.</p>
+                            <p>In this road trip game, you are trying to become a successful farmer by collecting
+                                various forms of livestock.
+                                The player with the most livestock by the end of the trip wins.</p>
                             <h4>Getting Livestock</h4>
                             <p>You can play with any available living creatures (cows, sheep, goats, horses, dogs, cats,
                                 frogs, llamas, whatever) or you can restrict the game to certain species.</p>
@@ -95,7 +96,6 @@
 
             <!-- Page content -->
 
-
             <div class="flex flex-col m-3 items-center gap-3">
                 <h2 class="text-xl font-serif">Select a Farm:</h2>
                 <div class="flex flex-col items-start gap-3">
@@ -109,9 +109,9 @@
                         </div>
                         <% } %>
                 </div>
-                <div class="divider"></div>
+                <div class="divider mb-0"></div>
                 <h2 class="text-xl font-serif">Select an Animal:</h2>
-                <div class="flex flex-wrap justify-center gap-3">
+                <div class="flex flex-wrap justify-center gap-3 max-w-xl">
                     <div class="btn btn-primary w-32 min-w-fit">
                         <label class="label cursor-pointer custom-button">
                             <input type="radio" name="radioAnimal" class="radio radio-secondary mr-3" value="Cows" />
@@ -161,23 +161,26 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center bg-neutral py-3 w-full rounded-box">
-                    <h2 class="text-2xl font-normal text-neutral-content font-serif py-2">Rankings:</h2>
-                    <div class="bg-white h-0.5 w-3/4 rounded mb-3"></div>
-                    <% for(let i=0; i < players.length; i++) {%>
-                        <div class="text-center py-2">
-                            <h3 class="text-accent text-xl font-normal font-serif">
-                                <%= players[i].farmName %>
-                            </h3>
-                            <span class="text-neutral-content">
-                                Livestock : <%= players[i].farmTotal %>
-                            </span>
-                        </div>
+                <div class="flex flex-col items-center bg-neutral py-3 w-full max-w-xl rounded-box">
+                    <div class="p-5">
+                        <h2 class="text-2xl text-center font-normal text-neutral-content font-serif py-2">Rankings:</h2>
+                        <div class="bg-white h-0.5 w-full rounded mb-3"></div>
+                        <% for(let i=0; i < players.length; i++) {%>
+                            <div class="text-center py-2">
+                                <h3 class="text-accent text-xl font-normal font-serif">
+                                    <%= players[i].farmName %>
+                                </h3>
+                                <span class="text-neutral-content">
+                                    Livestock : <%= players[i].farmTotal %>
+                                </span>
+                            </div>
 
-                        <% } %>
+                            <% } %>
+                    </div>
+
                 </div>
 
-                <ul class="w-full md:w-1/2">
+                <ul class="w-full min-w-fit max-w-xl">
                     <!-- Player Card -->
                     <% for(let i=0; i < players.length; i++) {%>
                         <div class="flex flex-col my-2 p-4 border border-primary rounded-box">
@@ -248,10 +251,6 @@
             <label for="my-drawer" class="drawer-overlay"></label>
             <div class="menu p-5 overflow-y-auto w-72 bg-base-100 flex flex-col items-center">
                 <!-- Sidebar content here -->
-                <!-- <div class="px-2 mx-2">
-                    <button id="rules" class="btn btn-info text-xl">Rules</button>
-                </div> -->
-
                 <div class="divider"></div>
                 <!--New Player-->
                 <form action="/addPlayer" method="POST" class="flex flex-col items-center">
@@ -267,10 +266,10 @@
                         <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
                             id="farmName" name="farmName" />
 
-                        <input class="btn btn-primary mt-3" type="submit" value="Create New Player">
+                        <!-- <input class="btn btn-primary mt-3" type="submit" value="Create New Player"> Normal Button-->
                     </div>
-                </form><!-- New Player -->
-                <!-- <button class="btn btn-warning">Reset All Players</button> -->
+                </form><!-- End New Player -->
+                <button class="btn btn-primary mt-3" id="create">Create New Player</button>
 
             </div>
         </div>
