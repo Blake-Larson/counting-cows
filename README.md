@@ -3,7 +3,7 @@ Counting Cows is a road trip game typically played in the car. This website help
 
 **Link to project:** [counting-cows.herokuapp.com](https://counting-cows.herokuapp.com/)
 
-![alt tag](https://ibb.co/82Wbv8p)
+![The inital view of Counting Cows](https://ibb.co/82Wbv8p)
 
 ## How It's Made:
 
