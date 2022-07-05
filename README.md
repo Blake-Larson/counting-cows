@@ -9,8 +9,7 @@ In June of 2022 my wife and I moved across the country. She liked playing a road
 
 **Tech used:** HTML, CSS, JavaScript, TailwindCSS, Node.js, Express, EJS, MongoDB, Heroku
 
-I developed this app from scratch using the above tech. I also used [DaisyUI](https://daisyui.com/docs/use/) which has some pre-built components that work well with TailwindCSS. I had a fun time putting together the simple game mechanics in Express. 
-
+I developed this app from scratch using the above tech. I also used [DaisyUI](https://daisyui.com/docs/use/) which has some pre-built components that work well with TailwindCSS. I decided to build the front-end first for this app and also started from a mobile-first perspective as I knew we would be using the app on our phones. After the front-end was mostly complete, I built out my back-end in Node.JS. Then I had a fun time putting together the simple game mechanics in Express. 
 
 ## Optimizations
 I have temporarily disabled the functionality of the site while I look into options for authentication. I aim to provide a way for users to create their own games where they can view and interact with thier party's scores.
