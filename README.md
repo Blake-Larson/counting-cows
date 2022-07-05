@@ -3,7 +3,7 @@ In June of 2022 my wife and I moved across the country. She liked playing a road
 
 **Link to project:** [counting-cows.herokuapp.com](https://counting-cows.herokuapp.com/)
 
-![The inital view of Counting Cows]()
+![The inital view of Counting Cows](https://github.com/Blake-Larson/counting-cows/blob/main/images/page.png)
 
 ## How It's Made:
 
