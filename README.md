@@ -1,5 +1,5 @@
 # Counting Cows
-In June of 2022 my wife and I moved across the country. She liked playing a road trip game called Counting Cows. I decided to make a web app to help us keep score during our game.
+In June of 2022 my wife and I moved across the country. She liked playing a road trip game called Counting Cows so I decided to make a web app to help us keep score during our game.
 
 **Link to project:** [counting-cows.herokuapp.com](https://counting-cows.herokuapp.com/)
 
