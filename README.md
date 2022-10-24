@@ -1,16 +1,16 @@
 # Counting Cows
 
-In June of 2022 my wife and I moved across the country. She liked playing a road trip game called Counting Cows. I decided to make a web app to help us keep score during our game.
+In June of 2022 my wife and I moved across the country. She liked playing a road trip game called Counting Cows so I decided to make a web app to help us keep score during our game.
 
 **Link to project:** [counting-cows.herokuapp.com](https://counting-cows.herokuapp.com/)
 
-![The inital view of Counting Cows](https://github.com/Blake-Larson/counting-cows/blob/main/images/page.png)
+<p align="center" ><img align="center" src="https://github.com/Blake-Larson/counting-cows/blob/main/images/page.png" alt="The inital view of Counting Cows" /></p>
 
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, TailwindCSS, Node.js, Express, EJS, MongoDB, Heroku
 
-I developed this app from scratch using the above tech. I also used [DaisyUI](https://daisyui.com/docs/use/) which has some pre-built components that work well with TailwindCSS. I had a fun time putting together the simple game mechanics in Express.
+I developed this app from scratch using the above tech. I also used [DaisyUI](https://daisyui.com/docs/use/) which has some pre-built components that work well with TailwindCSS. I decided to build the front-end first for this app and also started from a mobile-first perspective as I knew we would be using the app on our phones. After the front-end was mostly complete, I built out my back-end in Node.JS. Then I had a fun time putting together the simple game mechanics in Express.
 
 ## Optimizations
 
