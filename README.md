@@ -2,7 +2,7 @@
 
 In June of 2022 my wife and I moved across the country. She liked playing a road trip game called Counting Cows so I decided to make a web app to help us keep score during our game.
 
-**Link to project:** [counting-cows.herokuapp.com](https://counting-cows.herokuapp.com/)
+**Link to project:** Live site has been archived
 
 <p align="center" ><img align="center" src="https://github.com/Blake-Larson/counting-cows/blob/main/images/page.png" alt="The inital view of Counting Cows" /></p>
 
