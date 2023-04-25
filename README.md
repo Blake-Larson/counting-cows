@@ -25,6 +25,4 @@ From this project I became much more familiar with using the older style of call
 
 Take a look at an example of work I did for a client.
 
-**My Music Studio:** [Live Site](https://my-music-studio.herokuapp.com/) | [Repo](https://github.com/Blake-Larson/my-music-studio)
-
 **Karissa Derousseua:** [Kdconciergept.com](https://kdconciergept.com/)
